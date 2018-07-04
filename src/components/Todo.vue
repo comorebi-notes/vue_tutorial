@@ -12,6 +12,7 @@
         class="task-list__item"
         v-for="task in tasks"
         v-bind:class="{ checked: task.done }"
+        v-bind:key="task.id"
       >
         <input type="checkbox" v-model="task.done">
         <input type="checkbox" v-model="task.editing">
@@ -29,11 +30,12 @@ export default {
     return {
       msg: 'Todo Application',
       tasks: [
-        { text: 'vue-router',  done: false, editing: false },
-        { text: 'vuex',        done: false, editing: false },
-        { text: 'vue-loader',  done: false, editing: false },
-        { text: 'awesome-vue', done: true,  editing: false }
+        { id: 1, text: 'vue-router',  done: false, editing: false },
+        { id: 2, text: 'vuex',        done: false, editing: false },
+        { id: 3, text: 'vue-loader',  done: false, editing: false },
+        { id: 4, text: 'awesome-vue', done: true,  editing: false }
       ],
+      id: 5,
       newTask: ''
     }
   },
@@ -43,6 +45,7 @@ export default {
       if (!text) return
 
       this.tasks.push({
+        id: this.id++,
         text,
         done: false,
         editing: false
